@@ -1,0 +1,13 @@
+FROM nginx:latest
+
+
+# Copy NGINX configurations
+COPY ./nginx /etc/nginx
+
+COPY ./static /app/static
+
+
+EXPOSE 80
+
+
+

@@ -11,7 +11,7 @@ from django.contrib.auth import login, authenticate, logout, update_session_auth
 from datetime import datetime
 import random 
 from django import forms
-# from .forms import ElecsQuizForm, CommsQuizForm, MathQuizForm, GEASQuizForm, ece_questions, comms_questions, math_questions, geas_questions, UpdatePasswordForm
+from .forms import ElecsQuizForm, CommsQuizForm, MathQuizForm, GEASQuizForm, ece_questions, comms_questions, math_questions, geas_questions, UpdatePasswordForm
 from django.urls import reverse
 from django.core.paginator import Paginator
 from django.http import HttpResponse

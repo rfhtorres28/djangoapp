@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    {% load static %}
+    <style>
+   body {
+            margin-bottom: 3%;
+        }
+         h1, h2, ol, form, p, label {
+            margin: 7px;
+            padding-left: 2px;
+
+        }
+        .form-control {
+            width: 350px; /* Adjust this value to change the length of the input fields */
+            height: 30px;
+
+        }
+
+        .content-section {
+       padding-bottom: 20px;
+       margin-top: 2%;
+        }
+
+        a.ml-2 {
+   
+   text-decoration: none; /* Remove underline from anchor tags */
+   font-size: 15px; /* Set the font size */
+   color: #124ad7; /* Set the text color */
+       }
+
+    .invalid-feedback{
+        position: absolute;
+        text-align: center;
+        width:450px;
+        height: 30px;
+        margin-top: 7%;
+        color: #eb0134;
+    }
+    .invalid-feedback-1{
+        position: absolute;
+        text-align: center;
+        width: 550px;
+        height: 50px;
+        margin-top: 7%;
+        color: #eb0134;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    .container {
+            width: 40%; /* Adjust the width as needed */
+            height: 600px;
+            margin: 0 auto; /* Center the container horizontally */
+            margin-top: 50px;
+            border: 1px solid #ffffff; /* Add a border for the rectangle effect */
+            padding: 20px; /* Add padding for spacing inside the container */
+            box-sizing: border-box; /* Include padding and border in the width */
+            box-shadow: 0 0 10px rgba(49, 98, 6, 0.3);
+            border-radius: 5%;
+
+        }
+    h1.register-header{
+        color: #124a83;
+        margin-left: 25px;
+        margin-bottom: 10px;
+        font-weight: normal;
+        font-size: 27px;
+    }
+    div.image-heading-container{
+       
+    display: flex; /* Use flexbox to arrange items horizontally */
+    align-items: center; /* Center items vertically */
+    }
+  .form-group{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 60px;
+    }
+ 
+    .content-section-2 {
+    position: relative; 
+    display: flex;
+    flex-direction: column; /* Make the content stack vertically */
+    align-items: center; /* Center align items horizontally */
+    gap: 10px;
+    }
+    .signup-btn,
+    a.ml-2 {
+    display: inline-block; /* Display elements inline */
+    }
+    .signup-btn {
+    margin-left: 300px; /* Add some space between the button and the link */
+    }
+    a.ml-2{
+        margin-right: 79px;
+    }
+    .content-section img {
+            margin: 0 auto;
+            width: 220px;
+            height: 130px;
+            margin-top: -15px;
+            margin-left: 105px; 
+            margin-bottom: -10px;
+        }
+    .border-bottom-mb-3{
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+   .main-form-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+   }
+
+
+ label {
+                display: none;
+        }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important; /* Change 'white' to your desired background color */
+    
+} 
+
+    </style>
+    
+    
+</head>
+<body>
+    <div class="container">  
+    <div class="content-section">
+        <div class="image-heading-container">
+            <a href="{% url 'home' %}">
+                 <img src="{% static 'myapp/images/logo.png' %}" alt="Example Image" width="100" height="100" class="logo">
+            </a>
+        </div> 
+        <form id="myForm" method="POST" action="">
+            {% csrf_token %}
+
+                <legend class="border-bottom-mb-3">Personal Details</legend>
+                <div class="main-form-group">
+                <p>
+                      {{form.username}}
+                     
+                </p>
+                 
+                <p>
+                     {{form.firstname}}  
+                </p>
+                <p>
+                     {{form.lastname}}
+                </p>
+                <p>
+                      {{form.email}}
+                </p>
+                <p>
+                     {{form.password1}} 
+                </p>
+                <p>
+                     {{form.password2}}
+                </p>
+            </div>       
+    
+            <br>
+            <div class="content-section-2">
+                <div style="display: flex; flex-direction: column; position: absolute;">
+                    <span id="errorMessage" style="text-align: center; color: #eb0134;"></span>
+                </div>
+                <div style="display: flex;  position: absolute; margin-top: 12%;">    
+                <small class="text-muted" style="margin-left: 3%;">
+                    <a class="ml-2" href="{% url 'memberlogin' %}">Already have an account? Click here to login</a>
+                </small>
+                <button id="submitButton" type="submit" style="margin-left: -8.5%;">Next</button>  
+               </div>        
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="{% static 'myapp/register_validation.js' %}"> </script>
+</body>
+</html>

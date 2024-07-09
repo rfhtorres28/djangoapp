@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Quiz</title>
+  {% load static %}
+  <style>
+          body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .nav-bar {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            height: 80px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  
+            background-color: black;
+        }
+       .nav-bar img {
+            width: 170px;
+            height: auto;
+        }
+        .nav-bar h1 {
+            color: white;
+            margin-left: 30%;
+            font-weight: normal;
+            font-size: 25px;
+            text-shadow: 4px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+        .nav-bar a {
+            margin-left: 43%;
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+        }
+        .nav-bar a:hover {
+            color: rgb(8, 90, 255);
+        }
+        .content-section {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  
+          width: 70%;
+          height: 1000px;
+          margin-top: 3%;
+          margin-bottom: 3%;
+          border-radius: 5%;
+        }
+        .content-header {
+          margin-top: 4%;
+        }
+        .content-section form {
+          margin-left: -7%;
+          margin-top: 5%;
+        }
+        .content-section button {
+          margin-left: 50%;
+          margin-bottom: 2%;
+        }
+        .flash-message {
+          position: absolute;
+          color:red;
+          font-weight: lighter;
+          text-align: center;
+          width: 240px;
+          height: 50px;
+          margin-top: -90%; 
+        }
+  </style>
+</head>
+<body>
+   <div class="nav-bar">
+       <img src="{% static 'myapp/images/logo.png' %}">
+       <h1>Math</h1>
+       <a href="{%url 'home'%}">Account</a>
+    </div>
+    <div class="content-section">
+      <h2 style="margin-top: -100%;">Choose the best answer among the choices</h2>
+      <div style = "position: absolute; margin-top: -25%; width: 700px; height: 550px;">
+        <form id="myForm" action="/math/" method="POST">
+            {% csrf_token %}
+            <ol type="1">
+                {% for field in form %}
+                    {% if field.name != 'csrf_token' and field.name != 'user_id' %}
+                        <li>
+                            <p>{{ field.label }}</p>
+                            {% for value, label in field.field.choices %}
+                                <label>
+                                    <input type="radio" name="{{ field.name}}" value="{{ value }}">
+                                    {{ label }}
+                                </label><br>
+                            {% endfor %}
+                            {% if field.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in field.errors %}
+                                        <span>{{ error }}</span><br>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+            <br>
+            <button type="submit" style="text-align: center;">Submit Answers</button>
+        </form>
+        
+          </div>
+          <div style="font-size: 22px; color: rgb(0, 114, 0);">
+            Timer: <span id="time" > 03:00</span>
+         </div>
+          </div>
+          <script src="{% static 'myapp/math.js' %}"> </script>
+</body>
+</html>

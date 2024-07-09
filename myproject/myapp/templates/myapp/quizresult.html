@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Result</title>
+</head>
+<body>
+    {% for result in result_list %}
+    <div class="result-item">
+        <h3>Username: {{ result.username }}</h3>
+        <p>Subject: {{ result.subject }}</p>
+        <p>Score Percentage: {{ result.score_pct }}</p>
+        <p>Timestamp: {{ result.timestamp }}</p>
+        <p>Difference: {{ result.difference }}</p>
+    </div>
+{% endfor %}
+</body>
+</html>

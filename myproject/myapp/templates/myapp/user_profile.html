@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    {% load static %}
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 15px;
+            margin-bottom: 10%;
+        }
+        .main-section{
+  
+            box-shadow: 0 0 10px rgba(49, 98, 6, 0.3);
+            text-align: center;
+            width: 470px;
+            height: 530px;
+            border-radius: 5%;
+        }
+        .main-section img {
+            position: relative;
+            width: 220px;
+            height: 130px; 
+            top: 10px;   
+        }
+     
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        list-style: none;
+        margin: 15px;
+    
+      }
+      .form-control {
+        width: 360px;
+        height: 30px;
+  
+      }
+    
+       .main-form {
+        width: auto;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+       }
+    </style>
+</head>
+<body>
+    <div class="main-section">
+        <div class="logo">
+          <a href="{%url 'home'%}"><img src="{% static 'myapp/images/logo.png' %}" alt="Example Image" width="100" height="100" class="logo"></a> 
+        </div>
+        <div class = "main-form">
+         <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+         <legend class="legend" style="font-size: 20px; margin-bottom: 7%;">Profile Details</legend>
+         
+               <div class ="form-control">
+                {{ form.instagram_username }}
+               </div> <br>
+               <div class ="form-control">
+                {{ form.facebook_username }}
+               </div><br>
+               <div class ="form-control">
+                {{ form.bio }}
+               </div><br>
+               <div style="display: flex; flex-direction: row;">
+                <label style="margin-right: 4%;">{{ form.date_of_birth.label }}</label>
+                {{ form.date_of_birth }}
+               </div><br>
+               <div style="display: flex; flex-direction: row; align-items: center;">
+                <label style="margin-right: 3%;">{{ form.gender.label }}</label>
+                <select name="{{ form.gender.name }}">
+                {% for value, label in form.gender.field.choices %}
+                 <option value="{{ value }}">{{ label }}</option>
+                 {% endfor %}
+                 </select>     
+                 </div><br>
+                 <div style="display: flex; flex-direction: row; align-items: center;">
+                    <label style="margin-right: 3%;">{{form.country.label}}</label>
+                    {{form.country}}
+                 </div><br>
+                 <div style="display: flex; flex-direction: row; align-items: center;">
+                    <label style="margin-right: 3%;">{{form.picture.label}}</label>
+                    {{form.picture}}
+                 </div>
+                 <button onclick="goBack()">Go Back</button>
+           <button type="submit" style="margin-top: 6%;">Submit</button>
+         </form> 
+        </div>   
+    </div>
+    <script>
+      function goBack() {
+          window.history.back();
+      }
+  </script>
+</body>
+</html>

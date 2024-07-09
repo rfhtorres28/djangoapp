@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        fetch(`http://172.17.0.1:80/validate-username/?username=${encodeURIComponent(usernameValue)}`).then(response => response.json())
+        fetch(`http://13.229.128.220:80/validate-username/?username=${encodeURIComponent(usernameValue)}`).then(response => response.json())
         .then(data => {
 
 
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        fetch(`http://172.17.0.1:80/validate-email/?email=${encodeURIComponent(emailValue)}`).then(response => response.json())
+        fetch(`http://13.229.128.220:80/validate-email/?email=${encodeURIComponent(emailValue)}`).then(response => response.json())
         .then(data => {
             console.log('Data:', data);
             
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        fetch(`http://172.17.0.1:80/validate-password/?password1=${encodeURIComponent(password1Value)}`).then(response => response.json())
+        fetch(`http://13.229.128.220:80/validate-password/?password1=${encodeURIComponent(password1Value)}`).then(response => response.json())
         .then(data => {
             
             
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        fetch(`http://172.17.0.1:80/validate-passwords/?password1=${encodeURIComponent(password1Value)}&password2=${encodeURIComponent(password2Value)}`).then(response => response.json())
+        fetch(`http://13.229.128.220:80/validate-passwords/?password1=${encodeURIComponent(password1Value)}&password2=${encodeURIComponent(password2Value)}`).then(response => response.json())
         .then(data => {
             
             console.log(data);

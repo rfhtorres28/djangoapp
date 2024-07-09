@@ -1,0 +1,21 @@
+# Use Python slim image
+FROM python:3.12.3
+
+# Set working directory inside the container
+WORKDIR /app
+
+COPY ./requirements.txt /app/requirements.txt
+
+# Copy current directory contents into the container at /app
+COPY . .
+
+# Install dependencies from requirements.txt
+RUN pip install -r requirements.txt
+
+# Expose port 8000 (default Django port)
+EXPOSE 8000
+
+
+
+# Command to run Daphne with Django
+CMD ["daphne", "-u", "0.0.0.0", "-p", "8000", "myproject.asgi:application"]

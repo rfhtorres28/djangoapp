@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from .models import UserDetails
 from django.core.validators import EmailValidator
-#from .models import ElecsQuestions, ElecsOptions, CommsQuestions,  CommsOptions, MathQuestions, MathOptions, GEASQuestions, GEASOptions
+from .models import ElecsQuestions, ElecsOptions, CommsQuestions,  CommsOptions, MathQuestions, MathOptions, GEASQuestions, GEASOptions
 import random 
 
 
@@ -142,10 +142,10 @@ class UpdatePasswordForm(PasswordChangeForm):
 
 
 
-# qn = ElecsQuestions.objects.all()
-# opn = ElecsOptions.objects.all()
-# ece_questions = [{"id":question.id, "content":question.content,
-#                 "options":[{"question_no":question.id, "letter":option.letter, "content":option.content, "is_correct":option.is_correct} for option in opn if option.question_no_id == question.id]} for question in qn]
+qn = ElecsQuestions.objects.all()
+opn = ElecsOptions.objects.all()
+ece_questions = [{"id":question.id, "content":question.content,
+                "options":[{"question_no":question.id, "letter":option.letter, "content":option.content, "is_correct":option.is_correct} for option in opn if option.question_no_id == question.id]} for question in qn]
 
 
 
@@ -164,10 +164,10 @@ class ElecsQuizForm(forms.Form):
 
 
 
-# qn = CommsQuestions.objects.all()
-# opn = CommsOptions.objects.all()
-# comms_questions = [{"id":question.id, "content":question.content,
-#                  "options":[{"question_no":question.id, "letter":option.letter, "content":option.content, "is_correct":option.is_correct} for option in opn if option.question_no_id == question.id]} for question in qn]
+qn = CommsQuestions.objects.all()
+opn = CommsOptions.objects.all()
+comms_questions = [{"id":question.id, "content":question.content,
+                 "options":[{"question_no":question.id, "letter":option.letter, "content":option.content, "is_correct":option.is_correct} for option in opn if option.question_no_id == question.id]} for question in qn]
 
 
 
@@ -186,10 +186,10 @@ class CommsQuizForm(forms.Form):
 
 
 
-# qn = MathQuestions.objects.all()
-# opn = MathOptions.objects.all()
-# math_questions = [{"id":question.id, "content":question.content,
-#                 "options":[{"question_no":question.id, "letter":option.letter, "content":option.content, "is_correct":option.is_correct} for option in opn if option.question_no_id == question.id]} for question in qn]
+qn = MathQuestions.objects.all()
+opn = MathOptions.objects.all()
+math_questions = [{"id":question.id, "content":question.content,
+                "options":[{"question_no":question.id, "letter":option.letter, "content":option.content, "is_correct":option.is_correct} for option in opn if option.question_no_id == question.id]} for question in qn]
 
 
 
@@ -205,10 +205,10 @@ class MathQuizForm(forms.Form):
             self.fields[field_name] = forms.ChoiceField(label=field_label, choices=options, widget=forms.RadioSelect, required=True)
 
 
-# qn = GEASQuestions.objects.all()
-# opn = GEASOptions.objects.all()
-# geas_questions = [{"id":question.id, "content":question.content,
-#                  "options":[{"question_no":question.id, "letter":option.letter, "content":option.content, "is_correct":option.is_correct} for option in opn if option.question_no_id == question.id]} for question in qn]
+qn = GEASQuestions.objects.all()
+opn = GEASOptions.objects.all()
+geas_questions = [{"id":question.id, "content":question.content,
+                 "options":[{"question_no":question.id, "letter":option.letter, "content":option.content, "is_correct":option.is_correct} for option in opn if option.question_no_id == question.id]} for question in qn]
 
 
 class GEASQuizForm(forms.Form):

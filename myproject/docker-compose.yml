@@ -1,0 +1,60 @@
+version: '3.9'
+
+services:
+  db:
+    build: ./mysql
+    restart: always
+    networks:
+      - backend
+   
+
+  redis:
+    build: ./redis
+    restart: always
+    volumes:
+      - ./redis/redis.conf:/etc/redis/redis.conf
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
+
+
+  web:
+    build: ./django
+    command: daphne -b 0.0.0.0 -p 8000 myproject.asgi:application
+    volumes:
+      - .:/app
+      - media:/app/media
+      - static:/app/static
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    networks:
+      - backend
+
+  nginx:
+    build: ./nginx
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    volumes:
+      - media:/app/media
+      - static:/app/static
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
+  media:
+    driver: local
+  static:
+    driver: local

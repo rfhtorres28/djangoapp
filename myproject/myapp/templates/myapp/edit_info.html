@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Information</title>
+    {% load static %} 
+    <style>
+        .main-section{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 45%; /* Adjust the width as needed */
+          margin: 0 auto; /* Center the container horizontally */
+          margin-top: 20px;
+          border: 1px solid #ffffff; /* Add a border for the rectangle effect */
+          padding: 15px; /* Add padding for spacing inside the container */
+          box-sizing: border-box; /* Include padding and border in the width */
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+          background-color: #ffffff;  
+          border-radius: 5%;  
+        }
+        .form-section {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 550px;
+          height: 80%;
+          padding-right: -10%;
+          margin-left: 5%;
+        }
+        .main-section img {
+            width: 210px;
+            height: 120px;
+            margin-bottom: -55px;
+       }
+       .main-section h1 {
+            font-weight: normal;
+            margin-bottom: -20px;
+           
+       }
+  
+       .main-section .button-container {
+         display: flex;
+         justify-content: flex-end;
+         margin-right: 18px;
+       }
+       .main-section .button-container .cancel-btn{
+         margin-left: 20px;
+       }
+       .main-section legend {
+         font-size: 20px;
+       }
+       .form-section .gender-field input[type="radio"] {
+          margin-left: 20px;
+          width: 10px;
+        }
+        .form-section label {
+          position: absolute;
+          margin-left: -120%;
+        }
+        .form-firstname {
+          margin-left: 10%;
+          width: 350px;
+          height: 30px;
+        }
+        .form-lastname {
+          margin-left: 10%;
+          width: 350px;
+          height: 30px;
+        }
+        .form-username {
+          margin-left: 10%;
+          width: 350px;
+          height: 30px;
+        }
+        .form-email {
+          margin-left: 10%;
+          width: 350px;
+          height: 30px;
+        }
+        .form-instagram {
+          margin-left: 10%;
+          width: 350px;
+          height: 30px;
+        }
+        .form-facebook {
+          margin-left: 10%;
+          width: 350px;
+          height: 30px;
+        }
+        .form-bio {
+          margin-left: 10%;
+          width: 350px;
+          height: 30px;
+        }
+        .form-birthdate {
+          margin-left: 10%;
+          width: 350px;
+          height: 30px;
+        }
+        .form-picture {
+          margin-left: 20%;
+          width: 350px;
+          height: 30px;
+        }
+       
+        .form-section span {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+   
+     
+    </style>
+</head>
+<body>
+    
+    <div class="main-section">  
+    
+        <img src="{% static 'myapp/images/logo.png' %}" alt="Example Image"><br>
+        <h4 style="font-size: 22px; font-weight: normal;">Edit Information</h4>
+    
+             <form method="POST" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+               <div class="form-section">
+                  <span>
+                    <label>{{form.firstname_update.label}}</label>{{form.firstname_update}}
+                  </span><br>
+                  <span>
+                    <label>{{form.lastname_update.label}}</label>{{form.lastname_update}}
+                  </span><br>
+                  <span>
+                    <label>{{form.username_update.label}}</label>{{form.username_update}}
+                  </span><br>
+                  <span>
+                    <label>{{form.email_update.label}}</label>{{form.email_update}}
+                  </span><br>
+                  <span>
+                    <label>{{form.ig_username_update.label}}</label>{{form.ig_username_update}}
+                  </span><br>
+                  <span>
+                    <label>{{form.fb_username_update.label}}</label>{{form.fb_username_update}}
+                  </span><br>
+                  <span>
+                    <label>{{form.bio_update.label}}</label>{{form.bio_update}}
+                  </span><br>
+                  <span><label>{{form.date_of_birth_update.label}} </label>{{form.date_of_birth_update}}</span><br>
+                  <span class="gender-field">
+                    <label style="margin-right: 160%;"> {{form.gender_update.label}} </label>
+                    {% for value, label in form.gender_update.field.choices %}
+                   
+                             <input type="radio" name="gender_update" value="{{value}}"  {% if value == form.gender_update.value %} checked{% endif %} > <!-- This is for user input letter choice, the field.id is automatically generated -->
+                                   {{ label }} <!-- This is to display the content of the choices (access the content of the tuple in the question forms)-->
+                     {% endfor %}   
+                  </span><br>
+                  <span><label >{{form.picture_update.label}}</label> {{form.picture_update}}</span>
+               
+                    {% if form.picture_update.errors%}        
+                      <span style="color: red; margin-top: 2%;">Please select a profile picture</span>
+                     {%endif%}
+                    <span id = "validationError" style="color: red; margin-top: 2%;"></span>
+             
+                  
+                  
+                  <button type="submit" style="margin-top: 5%; margin-left: -5%;">Update Information</button>
+                  </div> 
+                 
+                </form>
+             
+  
+        
+       
+    </div>
+
+
+
+    <script src="{% static 'myapp/updateinfo.js' %}"> </script>
+</body>
+</html>

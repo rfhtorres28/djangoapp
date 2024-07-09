@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECEBix-Login</title>
+    <link rel="stylesheet" href="static/main.css">
+    {% load static %}
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+     .main-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 400px;
+        height: 370px;
+        box-shadow: 0 0 10px rgba(49, 98, 6, 0.3);  
+        border-radius: 5%;
+        }
+        .logo {
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+    .form-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: -22px;
+        display: flex;
+        justify-content: center;
+        width: 400px; /* Adjust the width as needed */
+        height: 250px;
+        }
+
+        .form-control {
+            width: 320px; /* Adjust this value to change the length of the input fields */
+            height: 30px;
+            
+        }
+        .form-main{
+            display: flex;   
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 400px; /* Adjust the width as needed */
+            height: 250px;
+            margin-top: -25%;
+        }
+        .message {
+            text-align: center;
+            color: red; 
+            height: 30px;
+            width: 300px;
+            margin-top: 50%;
+        }
+        .form-group-1 {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+            position: absolute;
+            
+        }
+        .form-group-2 {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+            position: absolute;
+            margin-top: 9%;
+        }
+      
+    </style>
+</head>
+
+
+<body>
+
+    
+    <div class="main-section">
+         <a href="{% url 'home' %}"><img src="{% static 'myapp/images/logo.png' %}" alt="Example Image" width="220px" height="130px" class="logo"></a>   
+    <div class="form-section">
+        
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class= "form-main">
+                <h5 style="font-size: 22px; margin-top: -7%; font-weight: normal; position: absolute;">Login</h5>
+            <div class="form-group-1">
+                {{form.email}}
+            </div><br>
+            <div class="form-group-2">
+                {{form.password}}
+            </div>
+        
+            {% for message in messages %}
+            <span class="message">{{message}}</span>
+            {% endfor %}
+            
+            <button type="submit" style="position: absolute; margin-left: 15%; margin-top: 21%;">Submit</button>  
+        </div>
+      <a href="{% url 'register' %}" style="margin-left: 15%; text-decoration: none; ">Create an account</a>
+       
+        </form>
+    </div>
+    
+</div>
+    
+
+</body>
+</html>

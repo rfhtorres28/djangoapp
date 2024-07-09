@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)h52t_g+g7^xx1fq#=l(x&4l8lvgh$fbd$e*!^ikkbecc@_d(1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['13.229.128.220', '172.17.0.1', 'localhost', '127.0.0.1', '192.168.1.12']
+ALLOWED_HOSTS = ['192.168.1.12', 'localhost', '127.0.0.1', '172.17.0.1']
 
 
 # Application definition
@@ -93,17 +93,14 @@ ASGI_APPLICATION = 'myproject.asgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-
-
 CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [("redis", 6379)],
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('redis', 6379)],
         },
     },
 }
-
 
 DATABASES = {
     'default': {
@@ -111,7 +108,7 @@ DATABASES = {
         'NAME': 'djangoquizapp',
         'USER': 'ronnierdjango',
         'PASSWORD': 'Tootsie@1430',
-        'HOST': 'db',
+        'HOST': 'db', 
         'PORT': '3306',
     }
 }
